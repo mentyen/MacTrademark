@@ -94,11 +94,11 @@ public class HomePageTest extends CommonMethods {
 
 		for (int i = 1; i < issueList.size(); i++) {
 
-			new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(h.recordsCount));
+			new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOf(h.recordsCount));
 
 			records = h.recordsCount.getText();
 			
-			Thread.sleep(100);
+			Thread.sleep(200);
 
 			if (!records.equals("0")) {
 				break;
@@ -122,14 +122,17 @@ public class HomePageTest extends CommonMethods {
 			ex.getStackTrace();
 		}
 
+		String actual=null;
+		String expected=null;
+		
 		try {
 			
 			c=new CaseDetailsPage();
 			
 			new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(c.basisInformation));
 			//System.out.println(c.basisInformation.getText());
-			String actual=c.basisInformation.getText();
-			String expected="44(d), filed 44d, filed itu, 1(a)";
+			 actual=c.basisInformation.getText();
+			 expected="44(d), filed 44d, filed itu, 1(a)";
 			
 			
 			
@@ -138,6 +141,8 @@ public class HomePageTest extends CommonMethods {
 		} catch (Exception ex) {
 			ex.getStackTrace();
 		}
+		
+		Assert.assertEquals(actual, expected);
 
 		
 
